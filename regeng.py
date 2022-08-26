@@ -71,6 +71,7 @@ def toPosfix(expr : list) -> str:
 				while stack[-1] != '(' :
 					out.append(stack.pop())
 			except IndexError:
+			
 				#if IndexError, then there are some missing parentheses
 				sys.stderr.write("Invalid regex pattern.\n")
 				sys.exit(64)						
@@ -252,20 +253,3 @@ class Regex :
 	
 	def match(self, word : str) -> bool:
 		return search(self.nfa, word)
-
-def tostring_tr(a:Regex) :
-	print("[")
-	if len(a.nfa.start.transition)!=0 :
-		for k,l in a.nfa.start.transition :
-			print(k+" : "+tostring_tr(l))
-		
-	print("]")
-
-def tostring_ep_tr(a:Regex) :
-	print("[")
-	if len(a.nfa.start.epsilonTransitions)!=0 :
-		for k in a.nfa.start.epsilonTransitions :
-			tostring_ep_tr(k)
-	print("]")
-
-

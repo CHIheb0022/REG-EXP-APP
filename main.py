@@ -1,18 +1,18 @@
-from multiprocessing.resource_sharer import stop
-from pickle import TRUE
 import regeng
 
 if __name__ == "__main__" :
 	
 	pattern = input("Enter with the regex pattern: ")
 	rgx = regeng.Regex(pattern)
-	regeng.tostring_tr(rgx)
-	regeng.tostring_ep_tr(rgx)
-	while TRUE :
-		try :
-			str=input("Enter with the expression to be evaluated: ")
-			if str=="stop" :
-				break	
-		except EOFError:
+	while True  :
+		test=input("Enter with the expression to be evaluated: ")
+		print(rgx.match(test))
+		if rgx.match(test) :
 			break
-	
+		else :
+			answer=input("I want to keep trying :(y/n)")
+			if answer=="y" :
+				continue
+			else :
+		 		break	
+		
